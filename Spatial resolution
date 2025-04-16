@@ -1,0 +1,12 @@
+clc; clear; close all;
+img = imread('cancercell.jpg');
+gray_img = rgb2gray(img);
+
+% Reduce resolution
+low_res1 = imresize(gray_img, 0.25); % 25% of original
+low_res2 = imresize(gray_img, 0.1); % 10% of original
+
+figure;
+subplot(1,3,1); imshow(gray_img); title('Original Image');
+subplot(1,3,2); imshow(low_res1); title('25% Resolution');
+subplot(1,3,3); imshow(low_res2); title('10% Resolution');
