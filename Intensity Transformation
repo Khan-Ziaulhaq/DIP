@@ -1,0 +1,22 @@
+clc; clear; close all;
+
+img = imread('cancercell.jpg');  
+gray_img = rgb2gray(img);
+gray_img = double(gray_img); % Convert to double for calculations
+
+negative_img = 255 - gray_img;  % Manual complement for uint8
+
+gamma_corrected = 255 * ((gray_img / 255) .^ 0.5);  % Normalized gamma correction
+
+c = 255 / log(1 + max(gray_img(:)));  
+log_transformed = c * log(1 + gray_img); 
+
+negative_img = uint8(negative_img);
+gamma_corrected = uint8(gamma_corrected);
+log_transformed = uint8(log_transformed);
+
+figure;
+subplot(2,2,1); imshow(uint8(gray_img)); title('Original Grayscale Image');
+subplot(2,2,2); imshow(negative_img); title('Negative Image');
+subplot(2,2,3); imshow(gamma_corrected); title('Gamma Corrected (?=0.5)');
+subplot(2,2,4); imshow(log_transformed); title('Log Transformation');
