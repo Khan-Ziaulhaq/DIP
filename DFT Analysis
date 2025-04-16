@@ -1,0 +1,12 @@
+clc; clear; close all;
+img = imread('cancercell.jpg');
+gray_img = rgb2gray(img);
+
+% Compute DFT
+F = fft2(double(gray_img));
+Fshift = fftshift(F);
+magnitude = log(1 + abs(Fshift)); % Log transform for better visualization
+
+figure;
+subplot(1,2,1); imshow(gray_img); title('Original Image');
+subplot(1,2,2); imshow(magnitude, []); title('DFT Magnitude Spectrum');
