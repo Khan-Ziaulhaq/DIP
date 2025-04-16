@@ -1,0 +1,18 @@
+clc; clear; close all;
+img = imread('cancercell.jpg'); 
+gray_img = rgb2gray(img);
+
+% Sampling (Resizing the image)
+downsampled = imresize(gray_img, 0.5); % Reduce size by half
+upsampled = imresize(downsampled, 2); % Upsample back
+
+% Quantization (Reducing intensity levels)
+quantized_4 = uint8(floor(double(gray_img)/64)*64); % 4-bit (16 levels)
+quantized_2 = uint8(floor(double(gray_img)/128)*128); % 2-bit (4 levels)
+
+figure;
+subplot(2,3,1); imshow(gray_img); title('Original Image');
+subplot(2,3,2); imshow(downsampled); title('Downsampled');
+subplot(2,3,3); imshow(upsampled); title('Upsampled');
+subplot(2,3,4); imshow(quantized_4); title('4-bit Quantized');
+subplot(2,3,5); imshow(quantized_2); title('2-bit Quantized');
