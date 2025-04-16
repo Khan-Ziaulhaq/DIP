@@ -1,0 +1,10 @@
+clc; clear; close all;
+img = imread('cancercell.jpg');
+gray_img = rgb2gray(img);
+
+% Reduce intensity levels
+low_intensity = uint8(floor(double(gray_img)/32)*32); % Reduce to 8 levels
+
+figure;
+subplot(1,2,1); imshow(gray_img); title('Original Image');
+subplot(1,2,2); imshow(low_intensity); title('Reduced Intensity Levels');
