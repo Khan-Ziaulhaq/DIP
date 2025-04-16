@@ -1,0 +1,12 @@
+clc; clear; close all;
+img = imread('cancercell.jpg');
+gray_img = rgb2gray(img);
+
+% Histogram Equalization
+hist_eq = histeq(gray_img);
+
+figure;
+subplot(2,2,1); imshow(gray_img); title('Original Image');
+subplot(2,2,2); imhist(gray_img); title('Original Histogram');
+subplot(2,2,3); imshow(hist_eq); title('Histogram Equalized Image');
+subplot(2,2,4); imhist(hist_eq); title('Equalized Histogram');
